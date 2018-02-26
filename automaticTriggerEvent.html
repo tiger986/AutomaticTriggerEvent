@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 130px;
+			margin: 200px auto;
+		}
+		.d1, .d2{
+			width: 130px;
+			height: 50px;
+			font-size: 16px;
+			line-height: 50px;
+			text-align: center;			
+		}
+		.d1{
+			background-color: brown;
+		}
+		.d2{
+			background-color: palegreen;
+			margin-top: 50px;
+		}
+	</style>
+	<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div class="box">
+		<div class="d1">d1的点击事件</div>
+		<div class="d2" id="div2">d2的点击事件</div>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	
+	//JQ的方法
+	$(function(){
+		
+		$(".d1").click(function(){
+			alert("d1的点击事件");
+		});
+		
+		$(".d1").trigger("click");	
+		
+	})
+	
+	//JS的方法
+	var div2 = document.getElementById("div2");
+	
+	div2.onclick = function(){
+		alert("d2的点击事件")
+	}
+	
+	if(document.all){//IE
+		div2.click();
+	}else {//其它浏览器
+		var e = document.createEvent("MouseEvents");
+		e.initEvent("click", true, true);
+		div2.dispatchEvent(e);
+	}
+	
+</script>
